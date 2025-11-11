@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -33,7 +33,10 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Logout Berhasil']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Logout Berhasil',
+        ]);
     }
 
     // User Login Check
