@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum ProductCategoryEnum: string
+enum PaymentMethodEnum: string
 {
-    case KOPI = 'kopi';
-    case NON_KOPI = 'non_kopi';
-    case MAKANAN = 'makanan';
+    case CASH = 'cash';
+    case TRANSFER = 'transfer';
+    case QRIS = 'qris';
 
     public static function values(): array
     {

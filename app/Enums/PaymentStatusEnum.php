@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum ProductCategoryEnum: string
+enum PaymentStatusEnum: string
 {
-    case KOPI = 'kopi';
-    case NON_KOPI = 'non_kopi';
-    case MAKANAN = 'makanan';
+    case PENDING = 'pending';
+    case PAID = 'paid';
+    case CANCELLED = 'cancelled';
 
     public static function values(): array
     {

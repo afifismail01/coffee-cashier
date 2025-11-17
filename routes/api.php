@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TransactionDetailController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -15,4 +17,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products/{id}', [ProductController::class, 'show']);
     Route::put('/products/{id}', [ProductController::class, 'update']);
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+    // CRUD Transaction
+    Route::get('/transactions', [TransactionController::class, 'index']);
+    Route::get('/transaction/{id}', [TransactionController::class, 'show']);
+    Route::post('/transactions', [TransactionController::class, 'store']);
+    Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
 });

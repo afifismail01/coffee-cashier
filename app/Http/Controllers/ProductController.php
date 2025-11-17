@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Enums\ProductCategoryEnum;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -33,7 +34,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
-            'category' => 'required|string|in:kopi,non_kopi,makanan',
+            'category' => ['required', 'string', Rule::in(ProductCategoryEnum::values())],
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'description' => 'nullable|string|max:255',
@@ -96,7 +97,7 @@ class ProductController extends Controller
         }
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:255',
-            'category' => 'sometimes|required|string|in:kopi,non_kopi,makanan',
+            'category' => ['sometimes', 'required', 'string', Rule::in(ProductCategoryEnum::values())],
             'price' => 'sometimes|required|numeric',
             'stock' => 'sometimes|required|integer',
             'description' => 'nullable|string|max:255',
