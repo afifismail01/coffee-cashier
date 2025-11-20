@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
+use App\Http\Controllers\ReportController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -22,4 +23,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/transaction/{id}', [TransactionController::class, 'show']);
     Route::post('/transactions', [TransactionController::class, 'store']);
     Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
+    // CRUD TransactionDetail
+    Route::get('/transaction/{id}/details', [TransactionDetailController::class, 'index']);
+    Route::post('/transaction/{id}/details', [TransactionDetailController::class, 'store']);
+    Route::put('/transaction-detail/{id}', [TransactionDetailController::class, 'update']);
+    Route::delete('/transaction-detail/{id}', [TransactionDetailController::class, 'destroy']);
+    // Report routes
+    Route::prefix('reports')->group(function () {
+        Route::get('/daily', [ReportController::class, 'dailyReport']);
+        Route::get('/monthly', [ReportController::class, 'monthlyReport']);
+    });
 });
