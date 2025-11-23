@@ -124,9 +124,9 @@ class TransactionDetailController extends Controller
             DB::commit();
 
             return response()->json(['message' => 'Item deleted successfully'], 200);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['message' => $th->getMessage()], 500);
+            return response()->json(['message' => 'Item not found', 'error' => $e->getMessage()], 500);
         }
     }
 
